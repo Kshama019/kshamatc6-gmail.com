@@ -1,0 +1,21 @@
+def shortest_palindrome(s):
+    if not s:
+        return ""
+
+    # Helper function to find the longest palindrome suffix
+    def longest_palindrome_suffix(s):
+        rev_s = s[::-1]
+        combined = s + "#" + rev_s
+        prefix_array = [0] * len(combined)
+
+        for i in range(1, len(combined)):
+            j = prefix_array[i - 1]
+            while j > 0 and combined[i] != combined[j]:
+                j = prefix_array[j - 1]
+            if combined[i] == combined[j]:
+                j += 1
+            prefix_array[i] = j
+
+        return rev_s[:len(s) - prefix_array[-1]] + s
+
+    return longest_palindrome_suffix(s)
