@@ -1,0 +1,18 @@
+ def length_of_last_word(s):
+    # Remove trailing and leading whitespaces
+    s = s.strip()
+
+    # Initialize a variable to store the length of the last word
+    length = 0
+
+    # Iterate through the string from right to left
+    for i in range(len(s) - 1, -1, -1):
+        # Check for the first non-space character
+        if s[i] != ' ':
+            # Increment the length for each non-space character until a space is encountered
+            length += 1
+        else:
+            # Break the loop when a space is encountered, indicating the end of the last word
+            break
+
+    return length
